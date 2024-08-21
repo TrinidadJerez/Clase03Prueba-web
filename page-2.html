@@ -19,53 +19,30 @@
             <h1>Condiciones</h1>
         </header>
         <main></main>
-        <!--active este botón-->
         <aside>
             <button onclick="foto()">🖼️ DESCARGA</button>
         </aside>
-        <!-- Lo que sigue depende de usted -->
         <script>
-            // Position variables
-let circlePositionX = 200;
-let circlePositionY = 200;
+            let circlePositionX = 200;
+            let circlePositionY = 200;
+            let circleSpeedX = 2;
+            let circleSpeedY = 3;
+            let circleRadius = 25;
+            let circleHue = 0;
 
-// Speed variables
-let circleSpeedX = 2;
-let circleSpeedY = 3;
-
-// Radius variable
-let circleRadius = 25;
-
-// Hue variable
-let circleHue = 0;
             function setup() {
                 createCanvas(windowWidth, windowHeight);
-                //repita un mismo background en el style.css y en todos los script
                 background("#4A148C");
-              
-  // Draw ellipses using their radius
-  ellipseMode(RADIUS);
-
-  // Draw rectangles on either side of the canvas
-  noStroke();
-  fill(128);
-  //rect(0, 0, 100, height);
- // rect(300, 0, 100, height);
-
-  // Use Hue Saturation Brightness for colors on circle trail
-  colorMode(HSB);
-
-  // Set stroke weight to 4 units
-  strokeWeight(4);
-
-  // Create screen reader accessible description
-  describe(
-    'A circle starts in the center of the canvas. When the user holds the mouse down, the circle bounces around the canvas, its inside switches between black and white, and its outline fades between colors, leaving a rainbow trail.'
-  );
+                colorMode(HSB);
+                noStroke();
+                ellipseMode(RADIUS);
+                describe('A circle starts in the center of the canvas. When the user holds the mouse down, the circle bounces around the canvas, its inside switches between black and white, and its outline fades between colors, leaving a rainbow trail.');
             }
 
             function draw() {
-                 // Set stroke color using current hue
+                background("#4A148C");  // Clear the canvas with the background color
+
+              // Set stroke color using current hue
   stroke(circleHue, 80, 90);
 
   // If circle's x position is between 100 and 300
@@ -82,18 +59,12 @@ let circleHue = 0;
   // Draw circle at current position
   circle(circlePositionX, circlePositionY, circleRadius);
 
- // If mouse is held down, stop the sketch
-  if (mouseIsPressed) {
+  // If mouse is held down, animate the sketch
+  if (mouseIsPressed === false) {
     // Add speed to circle's position to make it move
     circlePositionX = circlePositionX + circleSpeedX;
     circlePositionY = circlePositionY + circleSpeedY;
-      
-    // Increase hue by 1
-    circleHue = circleHue + 1;
-  }
-            
 
-      
     // Increase hue by 1
     circleHue = circleHue + 1;
   }
@@ -121,7 +92,6 @@ let circleHue = 0;
     // Reverse vertical speed
     circleSpeedY = -circleSpeedY;
   }
-              
             }
 
             function foto() {
@@ -129,9 +99,8 @@ let circleHue = 0;
             }
 
             function windowResized() {
-                //repita un mismo background en el style.css y en todos los script
-                background("#4A148C");
                 resizeCanvas(windowWidth, windowHeight);
+                background("#4A148C");
             }
         </script>
     </body>
